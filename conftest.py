@@ -17,7 +17,7 @@ from dotenv import load_dotenv
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from conf import browser_os_name_conf               # pylint: disable=import-error wrong-import-position
 from conf import base_url_conf                      # pylint: disable=import-error wrong-import-position
-from endpoints.api_player import APIPlayer        # pylint: disable=import-error wrong-import-position
+# from endpoints.api_player import APIPlayer        # pylint: disable=import-error wrong-import-position
 from page_objects.PageFactory import PageFactory    # pylint: disable=import-error wrong-import-position
 from utils import interactive_mode                  # pylint: disable=import-error wrong-import-position
 from core_helpers.custom_pytest_plugins import CustomTerminalReporter # pylint: disable=import-error wrong-import-position
