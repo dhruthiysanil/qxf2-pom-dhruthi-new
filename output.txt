@@ -1,0 +1,12 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.4, pytest-8.1.1, pluggy-1.6.0 -- F:\python\python.exe
+metadata: {'Python': '3.13.4', 'Platform': 'Windows-11-10.0.26100-SP0', 'Packages': {'pytest': '8.1.1', 'pluggy': '1.6.0'}, 'Plugins': {'anyio': '4.9.0', 'asyncio': '0.23.7', 'html': '4.1.1', 'metadata': '3.1.1', 'reportportal': '5.4.0', 'rerunfailures': '15.1', 'snapshot': '0.9.0', 'xdist': '3.7.0', 'requests-mock': '1.12.1'}}
+rootdir: F:\Nethratech\Qxf2\qxf2-pom-dhruthi
+configfile: pytest.ini
+plugins: anyio-4.9.0, asyncio-0.23.7, html-4.1.1, metadata-3.1.1, reportportal-5.4.0, rerunfailures-15.1, snapshot-0.9.0, xdist-3.7.0, requests-mock-1.12.1
+asyncio: mode=Mode.STRICT
+collecting ... collected 1 item
+
+tests/test_magento_shirt_purchase.py::TestMagentoShirtPurchase::test_shirt_purchase[chrome-latest] FAILED
+
+============================= 1 failed in 12.32s ==============================

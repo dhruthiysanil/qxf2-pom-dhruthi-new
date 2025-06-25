@@ -1,6 +1,7 @@
 import pytest
 import os
-from page_objects.RegisterPage import RegisterPage
+from page_objects.registerpage import RegisterPage  # ✅ lowercase
+# from page_objects.magentoregisterpage import MagentoRegisterPage  # Not needed for this test
 
 def test_register_user(test_obj):
     """Test to register a new Magento user using Qxf2 test object."""
