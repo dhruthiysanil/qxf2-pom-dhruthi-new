@@ -35,7 +35,7 @@ class MagentoShirtPage(Web_App_Helper):
         self.write(" Product added to cart")
 
     def proceed_to_checkout(self):
-        self.write("\n🛒 Proceeding to checkout")
+        self.write("\n Proceeding to checkout")
         cart_icon = self.wait.until(EC.element_to_be_clickable((By.XPATH, SearchConfig.CART_ICON_XPATH)))
         self.driver.execute_script("arguments[0].click();", cart_icon)
         self.wait.until(EC.presence_of_element_located((By.CLASS_NAME, "minicart-items")))
