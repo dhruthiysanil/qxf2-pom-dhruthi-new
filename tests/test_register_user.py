@@ -1,3 +1,5 @@
+'''Registration'''
+
 import pytest
 import os
 from page_objects.registerpage import RegisterPage  # ✅ lowercase

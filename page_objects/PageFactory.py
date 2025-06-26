@@ -26,9 +26,15 @@ class PageFactory:
             test_obj = RegisterPage(driver=driver)
 
         elif page_name == "login page":
-            from page_objects.login_page import LoginPage
+            from page_objects.Magento.login_page import LoginPage
             test_obj = LoginPage(driver=driver)
 
-        # Add more page objects below as needed...
+        elif page_name == "cart page":
+            from page_objects.Magento.cart_page import CartPage
+            test_obj = CartPage(driver=driver)
+
+        elif page_name == "shipping page":
+            from page_objects.Magento.shipping_page import ShippingPage
+            test_obj = ShippingPage(driver=driver)
 
         return test_obj
