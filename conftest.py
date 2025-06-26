@@ -24,6 +24,8 @@ from core_helpers.custom_pytest_plugins import CustomTerminalReporter # pylint: 
 from core_helpers.logging_objects import Logging_Objects  # pylint: disable=import-error wrong-import-position
 from api_auto_generator.endpoint_name_generator import NameGenerator
 from api_auto_generator.openapi_spec_parser import OpenAPISpecParser
+import pytest
+  
 
 load_dotenv()
 

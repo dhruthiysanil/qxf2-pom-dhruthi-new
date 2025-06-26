@@ -1,25 +1,10 @@
-"""
-PageFactory uses the Factory Design Pattern.
-get_page_object() returns the appropriate page object based on the page_name argument.
-
-Pages implemented so far:
-1. Zero Page
-2. Zero Mobile Page
-3. Magento Shirt Page
-4. Register Page
-5. Login Page
-
-Add additional elif clauses as you implement more pages.
-"""
-
-# pylint: disable=import-outside-toplevel, E0401
 from conf import base_url_conf as url_conf
 
-class PageFactory():
+class PageFactory:
     "PageFactory uses the factory design pattern."
-    
+
     @staticmethod
-    def get_page_object(page_name, base_url=url_conf.ui_base_url):
+    def get_page_object(page_name, driver=None, base_url=url_conf.ui_base_url):
         "Return the appropriate page object based on page_name"
         test_obj = None
         page_name = page_name.lower()
@@ -33,16 +18,16 @@ class PageFactory():
             test_obj = Zero_Mobile_Page()
 
         elif page_name == "magento shirt page":
-            from page_objects.MagentoShirtPage import MagentoShirtPage
-            test_obj = MagentoShirtPage(base_url=base_url)
+            from page_objects.magento_shirt_page import MagentoShirtPage
+            test_obj = MagentoShirtPage(driver=driver)
 
         elif page_name in ["register page", "registration page"]:
             from page_objects.register_page import RegisterPage
-            test_obj = RegisterPage(base_url)
+            test_obj = RegisterPage(driver=driver)
 
-        elif page_name in ["login page", "sign in page"]:
+        elif page_name == "login page":
             from page_objects.login_page import LoginPage
-            test_obj = LoginPage(base_url)
+            test_obj = LoginPage(driver=driver)
 
         # Add more page objects below as needed...
 
