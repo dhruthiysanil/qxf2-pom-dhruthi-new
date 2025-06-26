@@ -3,6 +3,9 @@ import os
 from page_objects.registerpage import RegisterPage  # ✅ lowercase
 # from page_objects.magentoregisterpage import MagentoRegisterPage  # Not needed for this test
 
+from page_objects.registerPage import RegisterPage
+
+
 def test_register_user(test_obj):
     """Test to register a new Magento user using Qxf2 test object."""
     email = os.getenv("EMAIL")

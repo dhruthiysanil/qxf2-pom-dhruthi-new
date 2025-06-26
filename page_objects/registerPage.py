@@ -11,7 +11,7 @@ class RegisterPage:
         self.driver = driver
 
     def open_homepage(self):
-        """Navigate to the homepage."""
+        """Navigazte to the homepage."""
         self.driver.get(WomenConfig.HOME_URL)
 
     def fill_registration_form(self, email, password):
