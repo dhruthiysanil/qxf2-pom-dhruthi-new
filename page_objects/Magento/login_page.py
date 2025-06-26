@@ -1,3 +1,4 @@
+"User can Login and redirect to women page"
 import os
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
