@@ -12,4 +12,4 @@ class Magento_Main_Page(Web_App_Helper, Login_Object):
 
     def start(self):
         "Use this method to go to the Magento home page"
-        self.open("/")  # Use relative path to avoid repeated base URL
+        self.open("/") 
