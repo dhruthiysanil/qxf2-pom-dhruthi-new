@@ -12,4 +12,4 @@ geckodriver.log
 debug.log
 __pycache__
 venv*
-.env*
+.env*search_object/
