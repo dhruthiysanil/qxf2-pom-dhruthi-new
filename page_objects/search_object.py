@@ -1,31 +1,91 @@
+'''Search Object which willl search shirt and click on size and color'''
+
 import conf.locators_conf as locators
 from utils.Wrapit import Wrapit
 
 class Search_Object:
-    "Handles product search on Magento"
+    # "Search object for Magento site"
 
-    search_input = locators.search_input  # Locator for search bar
-    radiant_tee = locators.radiant_tee_link  # Locator for Radiant Tee link
+    # Locators
+    search_box = locators.search_box
+    product_image = locators.product_circe_image
+    size_option = locators.size_s
+    color_option = locators.color_green
+    add_to_cart_button = locators.add_to_cart_button
 
     @Wrapit._exceptionHandler
     @Wrapit._screenshot
-    def search_for(self, product_name="shirt"):
-        "Search for a product, click on the result, then close the window"
-        result_flag = True
+    def search_for_product(self, product_name):
+        # "Enter product name in search box and press Enter"
+        result_flag = self.set_text(self.search_box, product_name)
+        self.hit_enter(self.search_box)
 
-        # Type the product name into the search bar
-        result_flag &= self.set_text(self.search_input, product_name)
+        self.conditional_write(result_flag,
+            positive=f"Searched for product: {product_name}",
+            negative="Failed to search product",
+            level='debug')
+        return result_flag
 
-        # Press Enter to trigger the search
-        result_flag &= self.press_enter_key(self.search_input)
+    @Wrapit._exceptionHandler
+    @Wrapit._screenshot
+    def click_product(self):
+        # "Scroll to and click on Circe Hooded Ice Fleece image"
+        scroll_flag = self.scroll_down(self.product_image)  # updated from scroll_to_element
+        result_flag = False
+        if scroll_flag:
+            result_flag = self.click_element(self.product_image)
 
-        # Wait for results to load
-        self.wait(3)
+        self.conditional_write(result_flag,
+            positive="Clicked on product image (Circe Hooded Ice Fleece)",
+            negative="Failed to click product image",
+            level='debug')
+        return result_flag
 
-        # Click the product link (e.g., Radiant Tee)
-        result_flag &= self.click_element(self.radiant_tee)
+    @Wrapit._exceptionHandler
+    @Wrapit._screenshot
+    def select_size(self):
+        # "Select size S"
+        result_flag = self.click_element(self.size_option)
+        self.conditional_write(result_flag,
+            positive="Selected size S",
+            negative="Failed to select size S",
+            level='debug')
+        return result_flag
 
-        # Optional: Close the current tab after clicking the product
-        result_flag &= self.close_current_window()
+    @Wrapit._exceptionHandler
+    @Wrapit._screenshot
+    def select_color(self):
+        # "Select color Green"
+        result_flag = self.click_element(self.color_option)
+        self.conditional_write(result_flag,
+            positive="Selected color Green",
+            negative="Failed to select color Green",
+            level='debug')
+        return result_flag
 
+    @Wrapit._exceptionHandler
+    @Wrapit._screenshot
+    def click_add_to_cart(self):
+        # "Click on Add to Cart button"
+        result_flag = self.click_element(self.add_to_cart_button)
+        self.conditional_write(result_flag,
+            positive="Clicked Add to Cart",
+            negative="Failed to click Add to Cart",
+            level='debug')
+        return result_flag
+
+    @Wrapit._exceptionHandler
+    @Wrapit._screenshot
+    def search_and_add_product(self, product_name="shirt"):
+        # "Search, click product image, select size/color, and add to cart"
+        result_flag = self.search_for_product(product_name)
+        result_flag &= self.click_product()
+        result_flag &= self.select_size()
+        result_flag &= self.select_color()
+        result_flag &= self.click_add_to_cart()
+
+        self.conditional_write(result_flag,
+            positive="Successfully added product to cart",
+            negative="Failed to add product to cart",
+            level='debug')
         return result_flag
