@@ -1,10 +1,9 @@
 # Common locator file for all locators
-
 # Magento Login Page Locators
 sign_in_link = "xpath,//a[normalize-space(text())='Sign In']"
 email_field = "xpath,//input[@id='email']"
 password_field = "xpath,//input[@id='pass']"
-sign_in_button = "xpath,//button[@name='send']"  # ✅ Changed from id='send2' to name='send'
+sign_in_button = "xpath,//button[@name='send']"  
 women_section = "xpath,//span[text()='Women']"
 account_url_fragment = "magento.softwaretestingboard.com"
 search_input = "xpath,//input[@id='search']"
@@ -30,10 +29,8 @@ cart_icon = "xpath,//a[@class='action showcart']"
 my_cart_text = "xpath,//span[text()='My Cart']"
 proceed_to_checkout_button = "id,top-cart-btn-checkout"
 
-# -----------------------------
-# ✅ Shipping Page Locators
-# -----------------------------
 
+#  Shipping Page Locators
 CHECKOUT_COMPANY_SELECTOR = "name,company"
 CHECKOUT_STREET_SELECTOR = "name,street[0]"
 CHECKOUT_CITY_SELECTOR = "name,city"
@@ -47,10 +44,8 @@ SHIPPING_METHOD_RADIO_XPATH = "xpath,//input[@type='radio' and contains(@value,'
 NEXT_BUTTON_XPATH = "xpath,//span[@data-bind=\"i18n: 'Next'\"]"
 PLACE_ORDER_BUTTON_XPATH = "xpath,//span[@data-bind=\"i18n: 'Place Order'\"]"
 
-# -----------------------------
-# ✅ Shipping Info Constants
-# -----------------------------
 
+#Shipping Info Constants
 COMPANY_NAME = "NethraTech Pvt Ltd"
 STREET_ADDRESS = "123 AI Street"
 CITY = "Bangalore"
