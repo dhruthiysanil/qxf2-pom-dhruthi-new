@@ -13,7 +13,6 @@ import conf.magento_conf as conf
 @pytest.mark.GUI
 def test_magento_login_and_search(test_obj):
     "Magento login, search, checkout and shipping flow"
-    
 
     try:
         # Initialize result tracking
@@ -34,16 +33,12 @@ def test_magento_login_and_search(test_obj):
         test_obj.log_result(result_flag,
                             positive=f"Logged in successfully with email: {email}",
                             negative=f"Login failed for email: {email}")
-        test_obj.add_tesults_case("Login", "Login and navigate to Women section",
-                                  "test_magento_login_and_search", result_flag, "", [])
 
         # Step 3: Search and Add Product
         result_flag &= test_obj.search_and_add_product(product_name)
         test_obj.log_result(result_flag,
                             positive=f"Searched for and added '{product_name}' to cart",
                             negative=f"Failed to add '{product_name}' to cart")
-        test_obj.add_tesults_case("Search & Add Product", "Search and add product to cart",
-                                  "test_magento_login_and_search", result_flag, "", [])
 
         # Step 4: Complete shipping and place order
         if result_flag:
@@ -52,8 +47,6 @@ def test_magento_login_and_search(test_obj):
             test_obj.log_result(result_flag,
                                 positive="Shipping form submitted and order placed successfully",
                                 negative="Shipping form submission or order placement failed")
-            test_obj.add_tesults_case("Shipping & Order", "Fill shipping form and place order",
-                                      "test_magento_login_and_search", result_flag, "", [])
 
         # Wrap up
         test_obj.write('Script duration: %d seconds\n' % (int(time.time() - start_time)))
