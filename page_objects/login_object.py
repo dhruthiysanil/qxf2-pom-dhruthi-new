@@ -13,8 +13,8 @@ class Login_Object:
     password_field = locators.password_field
     sign_in_button = locators.sign_in_button
     women_section = locators.women_section
-    login_success_fragment = "magento.softwaretestingboard.com"
-
+    login_success_fragment = locators.link
+    
     @Wrapit._exceptionHandler
     @Wrapit._screenshot
     def click_login_link(self):
