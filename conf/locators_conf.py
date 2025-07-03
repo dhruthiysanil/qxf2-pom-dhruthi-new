@@ -5,7 +5,7 @@ email_field = "xpath,//input[@id='email']"
 password_field = "xpath,//input[@id='pass']"
 sign_in_button = "xpath,//button[@name='send']"  
 women_section = "xpath,//span[text()='Women']"
-account_url_fragment = "magento.softwaretestingboard.com"
+link = "magento.softwaretestingboard.com"
 search_input = "xpath,//input[@id='search']"
 radiant_tee_link = "xpath,//a[contains(@class,'product-item-link') and contains(text(),'Radiant Tee')]"
 
@@ -29,7 +29,6 @@ cart_icon = "xpath,//a[@class='action showcart']"
 my_cart_text = "xpath,//span[text()='My Cart']"
 proceed_to_checkout_button = "id,top-cart-btn-checkout"
 
-
 #  Shipping Page Locators
 CHECKOUT_COMPANY_SELECTOR = "name,company"
 CHECKOUT_STREET_SELECTOR = "name,street[0]"
@@ -38,18 +37,11 @@ CHECKOUT_STATE_DROPDOWN_SELECTOR = "name,region_id"
 CHECKOUT_ZIP_SELECTOR = "name,postcode"
 CHECKOUT_COUNTRY_SELECTOR = "name,country_id"
 CHECKOUT_PHONE_SELECTOR = "name,telephone"
+BILLING_SAME_AS_SHIPPING_CHECKBOX = 'xpath,//input[@name="billing-address-same-as-shipping"]'
+
+PLACE_ORDER_BUTTON_XPATH = 'xpath,//button[@class="action primary checkout"]'
+
 
 # Shipping Method and Final Checkout
 SHIPPING_METHOD_RADIO_XPATH = "xpath,//input[@type='radio' and contains(@value,'flatrate')]"
 NEXT_BUTTON_XPATH = "xpath,//span[@data-bind=\"i18n: 'Next'\"]"
-PLACE_ORDER_BUTTON_XPATH = "xpath,//span[@data-bind=\"i18n: 'Place Order'\"]"
-
-
-#Shipping Info Constants
-COMPANY_NAME = "NethraTech Pvt Ltd"
-STREET_ADDRESS = "123 AI Street"
-CITY = "Bangalore"
-STATE_INDEX = 1               # 1st index in dropdown (0-based)
-ZIP_CODE = "560001"
-COUNTRY_INDEX = 1             # 1st index in dropdown
-PHONE_NUMBER = "9844543210"

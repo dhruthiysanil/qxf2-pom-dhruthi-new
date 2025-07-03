@@ -7,6 +7,4 @@ class Shipping_Page(Web_App_Helper, Shipping_Object):
 
     def start(self):
         "Start should assume we are already at the shipping page from Search flow"
-        # Do not navigate again – you're already at the correct shipping page
-        # self.smart_wait(self.CHECKOUT_COMPANY_SELECTOR, wait_seconds=15)
         pass
