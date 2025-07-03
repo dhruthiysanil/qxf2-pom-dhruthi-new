@@ -96,6 +96,8 @@ class Shipping_Object:
             result_flag &= self.select_state(shipping_info["state_text"])
             result_flag &= self.fill_zip(shipping_info["zip"])
             result_flag &= self.fill_phone(shipping_info["phone"])
+            result_flag &= self.click_next()
+            result_flag &= self.place_order()
         else:
             self.write("Detected filled shipping address. Skipping form input.", level="debug")
 
