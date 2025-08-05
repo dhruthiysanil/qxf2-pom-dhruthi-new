@@ -2,7 +2,7 @@ name: Run UI Tests
 
 on:
   push:
-    branches: [ master ]  # or use 'main' or any branch you want
+    branches: [ master ]
   pull_request:
 
 jobs:
@@ -37,6 +37,6 @@ jobs:
       - name: Run Selenium tests
         env:
           SELENIUM_GRID_URL: http://localhost:4444/wd/hub
-          PYTHONPATH: .
+          PYTHONPATH: ${{ github.workspace }}
         run: |
           pytest tests/
