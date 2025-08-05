@@ -37,5 +37,6 @@ jobs:
       - name: Run Selenium tests
         env:
           SELENIUM_GRID_URL: http://localhost:4444/wd/hub
+          PYTHONPATH: .
         run: |
           pytest tests/
