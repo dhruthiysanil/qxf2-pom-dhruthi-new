@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-  pull_request:
 
 jobs:
   test:
@@ -19,15 +18,26 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Install Chrome
+      - name: Install Chrome and matching Chromedriver
         run: |
           sudo apt update
-          sudo apt install -y wget
+          sudo apt install -y unzip wget
+
+          # Install latest Chrome
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
           sudo apt install -y ./google-chrome-stable_current_amd64.deb
 
-      - name: Install dependencies
+          # Extract Chrome version
+          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
+
+          # Download matching ChromeDriver
+          wget -q "https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/${CHROME_VERSION}/linux64/chromedriver-linux64.zip"
+          unzip chromedriver-linux64.zip
+          sudo mv chromedriver-linux64/chromedriver /usr/bin/chromedriver
+          sudo chmod +x /usr/bin/chromedriver
+
+      - name: Install Python dependencies
         run: pip install -r requirements.txt
 
-      - name: Run tests
+      - name: Run pytest
         run: pytest tests/
