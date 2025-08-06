@@ -1,13 +1,41 @@
-name: Run Magento Login Test
+name: Run Tests
 
 on:
   push:
     branches:
+      - main
       - master
+  schedule:
+    - cron: "0 22 * * *"  # Daily at 10:00 PM UTC
   workflow_dispatch:
 
 jobs:
+  run-kooper-tests:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: AutomationTest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Kooper Selenium Tests
+        run: |
+          python -m pytest --remote_flag Y
+
   run-magento-login:
+    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
 
     steps:
@@ -24,6 +52,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run test_magento_login.py
+      - name: Run Magento Login Test
         run: |
           pytest tests/test_magento_login.py --disable-warnings -v
