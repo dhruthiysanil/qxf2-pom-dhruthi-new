@@ -4,6 +4,8 @@ Get the webrivers for local browsers.
 from selenium.webdriver.chrome.options import Options
 import sys
 from selenium import webdriver
+import tempfile
+
 
 class LocalOptions():
     """Class contains methods for getting webfrivers for various browsers."""
@@ -58,6 +60,9 @@ class LocalOptions():
         options.add_argument('--disable-dev-shm-usage')
         options.add_argument('--no-sandbox')
         options.add_argument('--ignore-certificate-errors')
+        # 👇 Add this to avoid user-data-dir conflict
+        options.add_argument(f"--user-data-dir={tempfile.mkdtemp()}")
+
         local_driver = webdriver.Chrome(options=options)
 
         return local_driver
