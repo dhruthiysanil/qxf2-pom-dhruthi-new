@@ -18,35 +18,29 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Install Chrome and matching Chromedriver
+      - name: Install Google Chrome
         run: |
-          set -e
           sudo apt update
-          sudo apt install -y unzip wget curl gnupg
-
-          # Install Google Chrome
+          sudo apt install -y wget curl gnupg unzip
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
           sudo apt install -y ./google-chrome-stable_current_amd64.deb
+          google-chrome --version
 
-          # Get Chrome version (e.g., 139.0.7258.66)
+      - name: Install ChromeDriver
+        run: |
           CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+\.\d+')
           MAJOR_VERSION=$(echo $CHROME_VERSION | cut -d '.' -f 1)
-
-          echo "Installed Chrome version: $CHROME_VERSION"
-
-          # Download ChromeDriver matching Chrome version
           DRIVER_URL="https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/${CHROME_VERSION}/linux64/chromedriver-linux64.zip"
-          echo "Downloading ChromeDriver from: $DRIVER_URL"
-          wget -q $DRIVER_URL -O chromedriver.zip || (echo "Failed to download ChromeDriver for version $CHROME_VERSION" && exit 1)
-
+          wget -q $DRIVER_URL -O chromedriver.zip || exit 1
           unzip chromedriver.zip
-          sudo mv chromedriver-linux64/chromedriver /usr/bin/chromedriver
-          sudo chmod +x /usr/bin/chromedriver
+          sudo mv chromedriver-linux64/chromedriver /usr/local/bin/chromedriver
+          sudo chmod +x /usr/local/bin/chromedriver
           chromedriver --version
 
-      - name: Install Python dependencies
+      - name: Install dependencies
         run: |
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-      - name: Run pytest
+      - name: Run tests
         run: pytest tests/
