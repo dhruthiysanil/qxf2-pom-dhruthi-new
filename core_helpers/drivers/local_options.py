@@ -31,6 +31,11 @@ class LocalOptions():
         """Get webdriver for chrome."""
         options = webdriver.ChromeOptions()
         options.browser_version = browser_version
+
+         # ✅ Add temporary user data directory to avoid GitHub Actions crash
+        temp_user_data_dir = tempfile.mkdtemp()
+        options.add_argument(f'--user-data-dir={temp_user_data_dir}') 
+
         local_driver = webdriver.Chrome(options=options)
 
         return local_driver
@@ -58,6 +63,11 @@ class LocalOptions():
         options.add_argument('--disable-dev-shm-usage')
         options.add_argument('--no-sandbox')
         options.add_argument('--ignore-certificate-errors')
+
+         # ✅ Add temporary user data directory
+        temp_user_data_dir = tempfile.mkdtemp()
+        options.add_argument(f'--user-data-dir={temp_user_data_dir}')
+        
         local_driver = webdriver.Chrome(options=options)
 
         return local_driver
